@@ -10,17 +10,7 @@
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script type="text/javascript" src="assets/js/paper-full.min.js"></script>
-    <script type="text/paperscript" canvas="myCanvas">
-    	// Create a Paper.js Path to draw a line into it:
-    	var path = new Path();
-    	// Give the stroke a color
-    	path.strokeColor = 'black';
-    	var start = new Point(100, 100);
-    	// Move to start and draw a line from there
-    	path.moveTo(start);
-    	// Note the plus operator on Point objects.
-    	// PaperScript does that for us, and much more!
-    	path.lineTo(start + [ 100, -50 ]);
+    <script type="text/paperscript" src="assets/js/myScript.js" canvas="myCanvas">
     </script>
 </head>
 
