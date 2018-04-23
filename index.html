@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script type="text/javascript" src="assets/js/paper-full.min.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+    	// Create a Paper.js Path to draw a line into it:
+    	var path = new Path();
+    	// Give the stroke a color
+    	path.strokeColor = 'black';
+    	var start = new Point(100, 100);
+    	// Move to start and draw a line from there
+    	path.moveTo(start);
+    	// Note the plus operator on Point objects.
+    	// PaperScript does that for us, and much more!
+    	path.lineTo(start + [ 100, -50 ]);
+    </script>
 </head>
 
 <body style="background-color:rgb(68,68,68);">
@@ -21,13 +34,14 @@
                         <li class="nav-item" role="presentation"><a class="nav-link" href="#" data-bs-hover-animate="pulse" style="color:rgb(255,255,255);">About</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="#" data-bs-hover-animate="pulse" style="color:rgb(255,255,255);">Summary</a></li>
                     </ul>
+                </div>
             </div>
-    </div>
-    </nav>
+        </nav>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-animation.js"></script>
+    <canvas id="myCanvas" resize></canvas>
 </body>
 
 </html>
