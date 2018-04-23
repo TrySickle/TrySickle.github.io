@@ -8,13 +8,10 @@ path.moveTo(start);
 // Note the plus operator on Point objects.
 // PaperScript does that for us, and much more!
 path.lineTo(start + [100, -50]);
-var topLeft = new Point(100, 100);
-var rectSize = new Size(200, 100);
-var rect = new Rectangle(topLeft, rectSize);
-rect.fillColor = 'black';
-console.log(rect); // { x: 10, y: 20, width: 200, height: 100 }
-console.log(rect.point); // { x: 10, y: 20 }
-console.log(rect.size);
+var rectangle = new Rectangle(new Point(50, 50), new Point(150, 100));
+var cornerSize = new Size(20, 20);
+var path2 = new Path.RoundRectangle(rectangle, cornerSize);
+path2.fillColor = 'black';
 rect.onMouseEnter = function (event) {
     console.log('enter');
     this.fillColor = 'red';
