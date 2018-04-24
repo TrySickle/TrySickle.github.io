@@ -35,7 +35,7 @@
             var corner = new Path.Rectangle(corners[i] - descLength / 2, new Size(descLength, descLength));
             corner.fillColor = 'white';
             corner.onMouseEnter = function(event) {
-                var rect = new Rectangle(event.point, new Size(radius, radius));
+                var rect = new Rectangle(new Point(event.target.position.x + descLength / 2, event.target.position.y - descLength / 2), new Size(radius, radius));
                 var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = 'red';
                 descriptions.push(fullDescription);
