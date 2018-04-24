@@ -19,19 +19,18 @@
 
         // Data Arrays
         // Comics: Polar Bear, Backyard; Films: Man, Brock; Lit: Marx, Grapes; Digital Media: Species, Spore; Data: Cuba, Iraq; Open: Dutty, Boxes
-        var images = ["https://i.pinimg.com/236x/eb/4d/3f/eb4d3f2544598061c6b5c0c9ddc7e54e.jpg",
-                      "https://i.pinimg.com/564x/bd/1c/32/bd1c32fe8f53d4df82d413a3e3a96afb.jpg",
-                      "https://i.pinimg.com/564x/74/bd/4c/74bd4c5315368c0430da2427f52d5049.jpg",
-                      "https://i.pinimg.com/236x/21/c6/2e/21c62ef427cd4878fcc07d708b27c170.jpg",
-                      "https://upload.wikimedia.org/wikipedia/en/e/e1/The_Machine_in_the_Garden.jpg",
-                      "https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/JohnSteinbeck_TheGrapesOfWrath.jpg/200px-JohnSteinbeck_TheGrapesOfWrath.jpg",
-                      "https://i.pinimg.com/564x/52/f3/23/52f3237905390805c7685b1bdeb1c55f.jpg",
-                      "https://i.pinimg.com/236x/23/cb/a6/23cba605b9d74669554f095787b5a51d.jpg",
-                      "https://i.pinimg.com/564x/06/ae/6f/06ae6fe3e60f82960eb77f6a047fde6e.jpg",
-                      "https://i.pinimg.com/564x/f2/ca/77/f2ca7745c2426f2ee0ab4aa90676fa6c.jpg",
-                      "https://i.pinimg.com/564x/6c/37/9b/6c379b8db71013344616aef94b0b88bc.jpg",
-                      "https://i.pinimg.com/564x/ed/2d/cd/ed2dcd650f2fa0baeaff416668c15376.jpg"];
-
+        var images = ["img1",
+                      "img2",
+                      "img3",
+                      "img4",
+                      "img5",
+                      "img6",
+                      "img7",
+                      "img8",
+                      "img9",
+                      "img10",
+                      "img11",
+                      "img12"];
 
         // Params
         var x = view.size.width / 2;
@@ -55,10 +54,8 @@
             this.scale(width / this.width, height / this.height);
         };
         for (var i = 0; i < corners.length; i++) {
-            var corner = new Raster({
-                source: images[i],
-                position: corners[i] - descLength / 2, 
-            });
+            var corner = new Raster(images[i]);
+            corner.position = corners[i];
             corner.rescale(descLength, descLength);
             corner.onMouseEnter = function(event) {
                 var rect = new Rectangle(new Point(event.target.position.x + descLength / 2, event.target.position.y - descLength / 2), new Size(radius, radius));
@@ -100,6 +97,18 @@
             </div>
         </nav>
     </div>
+    <img src="assets/images/img1.jpg" id="img1" style="display: none;">
+    <img src="assets/images/img2.jpg" id="img2" style="display: none;">
+    <img src="assets/images/img3.jpg" id="img3" style="display: none;">
+    <img src="assets/images/img4.jpg" id="img4" style="display: none;">
+    <img src="assets/images/img5.jpg" id="img5" style="display: none;">
+    <img src="assets/images/img6.jpg" id="img6" style="display: none;">
+    <img src="assets/images/img7.jpg" id="img7" style="display: none;">
+    <img src="assets/images/img8.jpg" id="img8" style="display: none;">
+    <img src="assets/images/img9.jpg" id="img9" style="display: none;">
+    <img src="assets/images/img10.jpg" id="img10" style="display: none;">
+    <img src="assets/images/img11.jpg" id="img11" style="display: none;">
+    <img src="assets/images/img12.jpg" id="img12" style="display: none;">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-animation.js"></script>
