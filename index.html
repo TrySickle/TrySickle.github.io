@@ -15,23 +15,25 @@
         var lines = [];
         var descriptions = [];
         var descTexts = [];
+        var x = view.size.width / 2;
+        var y = view.size.height / 3;
         var radius = view.size.height > view.size.width ? view.size.width / 3 : view.size.height / 3;
-        var corners = [new Point(view.size.width / 2 + radius, view.size.height / 2),
-                       new Point(view.size.width / 2 + Math.cos(Math.PI / 6) * radius, view.size.height / 2 - Math.sin(Math.PI / 6) * radius),
-                       new Point(view.size.width / 2 + Math.cos(Math.PI / 3) * radius, view.size.height / 2 - Math.sin(Math.PI / 3) * radius),
-                       new Point(view.size.width / 2, view.size.height / 2 - radius),
-                       new Point(view.size.width / 2 - Math.cos(Math.PI / 3) * radius, view.size.height / 2 - Math.sin(Math.PI / 3) * radius),
-                       new Point(view.size.width / 2 - Math.cos(Math.PI / 6) * radius, view.size.height / 2 - Math.sin(Math.PI / 6) * radius),
-                       new Point(view.size.width / 2 - radius, view.size.height / 2),
-                       new Point(view.size.width / 2 - Math.cos(Math.PI / 6) * radius, view.size.height / 2 + Math.sin(Math.PI / 6) * radius),
-                       new Point(view.size.width / 2 - Math.cos(Math.PI / 3) * radius, view.size.height / 2 + Math.sin(Math.PI / 3) * radius),
-                       new Point(view.size.width / 2, view.size.height / 2 + radius),
-                       new Point(view.size.width / 2 + Math.cos(Math.PI / 6) * radius, view.size.height / 2 + Math.sin(Math.PI / 6) * radius),
-                       new Point(view.size.width / 2 + Math.cos(Math.PI / 3) * radius, view.size.height / 2 + Math.sin(Math.PI / 3) * radius)];
+        var corners = [new Point(x + radius, y),
+                       new Point(x + Math.cos(Math.PI / 6) * radius, y - Math.sin(Math.PI / 6) * radius),
+                       new Point(x + Math.cos(Math.PI / 3) * radius, y - Math.sin(Math.PI / 3) * radius),
+                       new Point(x, y - radius),
+                       new Point(x - Math.cos(Math.PI / 3) * radius, y - Math.sin(Math.PI / 3) * radius),
+                       new Point(x - Math.cos(Math.PI / 6) * radius, y - Math.sin(Math.PI / 6) * radius),
+                       new Point(x - radius, y),
+                       new Point(x - Math.cos(Math.PI / 6) * radius, y + Math.sin(Math.PI / 6) * radius),
+                       new Point(x - Math.cos(Math.PI / 3) * radius, y + Math.sin(Math.PI / 3) * radius),
+                       new Point(x, y + radius),
+                       new Point(x + Math.cos(Math.PI / 6) * radius, y + Math.sin(Math.PI / 6) * radius),
+                       new Point(x + Math.cos(Math.PI / 3) * radius, y + Math.sin(Math.PI / 3) * radius)];
         for (var i = 0; i < corners.length; i++) {
-            var circleCorner = new Path.Circle(corners[i], 50);
-            circleCorner.fillColor = 'white';
-            circleCorner.onMouseEnter = function(event) {
+            var corner = new Path.Rectangle(corners[i], new Size(radius / 3, radius / 3));
+            corner.fillColor = 'white';
+            corner.onMouseEnter = function(event) {
                 var rect = new Rectangle(event.point, new Size(radius, radius));
                 var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = 'red';
@@ -42,13 +44,13 @@
                 text.content = 'politics asdf lorem ipsum \ntext long long on glong';
                 descTexts.push(text);
             }
-            circleCorner.onMouseLeave = function(event) {
+            corner.onMouseLeave = function(event) {
                 var popped = descriptions.pop();
                 popped.remove();
                 var poppedText = descTexts.pop();
                 poppedText.remove();
             }
-            nodes.push(circleCorner);
+            nodes.push(corner);
         }
     </script>
 </head>
