@@ -13,6 +13,7 @@
     <script type="text/paperscript" canvas="myCanvas">
         var nodes = [];
         var lines = [];
+        var descriptions = [];
         var radius = view.size.height > view.size.width ? view.size.width / 3 : view.size.height / 3;
         var corners = [new Point(view.size.width / 2 + Math.cos(Math.PI / 6) * radius, view.size.height / 2 + Math.sin(Math.PI / 6) * radius),
                        new Point(view.size.width / 2 - Math.cos(Math.PI / 6) * radius, view.size.height / 2 + Math.sin(Math.PI / 6) * radius),
@@ -21,9 +22,20 @@
                        new Point(view.size.width / 2 + Math.cos(Math.PI / 6) * radius, view.size.height / 2 - Math.sin(Math.PI / 6) * radius),
                        new Point(view.size.width / 2 - Math.cos(Math.PI / 6) * radius, view.size.height / 2 - Math.sin(Math.PI / 6) * radius)];
         for (var i = 0; i < corners.length; i++) {
-            console.log(corners[i]);
             var circleCorner = new Path.Circle(corners[i], 10);
-            circleCorner.strokeColor = 'white';
+            circleCorner.fillColor = 'white';
+            circleCorner.onMouseEnter = function(event) {
+                var fullDescription = new Path.Rectangle(new Rectangle(event.point, new Size(radius, radius)));
+                fullDescription.fillColor = 'red';
+                descriptions.push(fullDescription);
+                console.log(descriptions);
+            }
+            circleCorner.onMouseLeave = function(event) {
+                var popped = descriptions.pop();
+                popped.remove();
+                console.log(descriptions);
+            }
+            console.log(circleCorner);
             nodes.push(circleCorner);
         }
     </script>
