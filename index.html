@@ -53,6 +53,26 @@
         Raster.prototype.rescale = function(width, height) {
             this.scale(width / this.width, height / this.height);
         };
+        var line = Path.Line(corners[0], corners[1]);
+        line.strokeColor = 'white';
+        line.strokeWidth = 7;
+        line.onMouseEnter = function(event) {
+            var rect = new Rectangle(new Point(event.target.position.x + descLength / 2, event.target.position.y - descLength / 2), new Size(radius, radius));
+            var fullDescription = new Path.Rectangle(rect);
+            fullDescription.fillColor = 'red';
+            descriptions.push(fullDescription);
+            var text = new PointText(rect.center);
+            text.justification = 'center';
+            text.fillColor = 'black';
+            text.content = 'politics asdf lorem ipsum \ntext long long on glong';
+            descTexts.push(text);
+        }
+        line.onMouseLeave = function(event) {
+            var popped = descriptions.pop();
+            popped.remove();
+            var poppedText = descTexts.pop();
+            poppedText.remove();
+        }
         for (var i = 0; i < corners.length; i++) {
             var corner = new Raster(images[i]);
             corner.position = corners[i];
@@ -74,12 +94,11 @@
                 var poppedText = descTexts.pop();
                 poppedText.remove();
             }
+            corner.onClick = function(event) {
+
+            }
             nodes.push(corner);
         }
-
-        var line = Path.Line(corners[0], corners[1]);
-        line.strokeColor = 'white';
-        line.strokeWidth = 7;
     </script>
 </head>
 
