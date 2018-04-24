@@ -15,12 +15,18 @@
         var lines = [];
         var descriptions = [];
         var radius = view.size.height > view.size.width ? view.size.width / 3 : view.size.height / 3;
-        var corners = [new Point(view.size.width / 2 + Math.cos(Math.PI / 6) * radius, view.size.height / 2 + Math.sin(Math.PI / 6) * radius),
-                       new Point(view.size.width / 2 - Math.cos(Math.PI / 6) * radius, view.size.height / 2 + Math.sin(Math.PI / 6) * radius),
-                       new Point(view.size.width / 2, view.size.height / 2 - radius),
-                       new Point(view.size.width / 2, view.size.height / 2 + radius),
+        var corners = [new Point(view.size.width / 2 + radius, view.size.height / 2),
                        new Point(view.size.width / 2 + Math.cos(Math.PI / 6) * radius, view.size.height / 2 - Math.sin(Math.PI / 6) * radius),
-                       new Point(view.size.width / 2 - Math.cos(Math.PI / 6) * radius, view.size.height / 2 - Math.sin(Math.PI / 6) * radius)];
+                       new Point(view.size.width / 2 + Math.cos(Math.PI / 3) * radius, view.size.height / 2 - Math.sin(Math.PI / 3) * radius),
+                       new Point(view.size.width / 2, view.size.height / 2 - radius),
+                       new Point(view.size.width / 2 - Math.cos(Math.PI / 3) * radius, view.size.height / 2 - Math.sin(Math.PI / 3) * radius),
+                       new Point(view.size.width / 2 - Math.cos(Math.PI / 6) * radius, view.size.height / 2 - Math.sin(Math.PI / 6) * radius),
+                       new Point(view.size.width / 2 - radius, view.size.height / 2),
+                       new Point(view.size.width / 2 - Math.cos(Math.PI / 6) * radius, view.size.height / 2 + Math.sin(Math.PI / 6) * radius),
+                       new Point(view.size.width / 2 - Math.cos(Math.PI / 3) * radius, view.size.height / 2 + Math.sin(Math.PI / 3) * radius),
+                       new Point(view.size.width / 2, view.size.height / 2 + radius),
+                       new Point(view.size.width / 2 + Math.cos(Math.PI / 6) * radius, view.size.height / 2 + Math.sin(Math.PI / 6) * radius),
+                       new Point(view.size.width / 2 + Math.cos(Math.PI / 3) * radius, view.size.height / 2 + Math.sin(Math.PI / 3) * radius)];
         for (var i = 0; i < corners.length; i++) {
             var circleCorner = new Path.Circle(corners[i], 10);
             circleCorner.fillColor = 'white';
