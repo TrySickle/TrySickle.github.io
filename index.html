@@ -14,6 +14,7 @@
         var nodes = [];
         var lines = [];
         var descriptions = [];
+        var descTexts = [];
         var radius = view.size.height > view.size.width ? view.size.width / 3 : view.size.height / 3;
         var corners = [new Point(view.size.width / 2 + radius, view.size.height / 2),
                        new Point(view.size.width / 2 + Math.cos(Math.PI / 6) * radius, view.size.height / 2 - Math.sin(Math.PI / 6) * radius),
@@ -28,20 +29,25 @@
                        new Point(view.size.width / 2 + Math.cos(Math.PI / 6) * radius, view.size.height / 2 + Math.sin(Math.PI / 6) * radius),
                        new Point(view.size.width / 2 + Math.cos(Math.PI / 3) * radius, view.size.height / 2 + Math.sin(Math.PI / 3) * radius)];
         for (var i = 0; i < corners.length; i++) {
-            var circleCorner = new Path.Circle(corners[i], 10);
+            var circleCorner = new Path.Circle(corners[i], 50);
             circleCorner.fillColor = 'white';
             circleCorner.onMouseEnter = function(event) {
-                var fullDescription = new Path.Rectangle(new Rectangle(event.point, new Size(radius, radius)));
+                var rect = new Rectangle(event.point, new Size(radius, radius));
+                var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = 'red';
                 descriptions.push(fullDescription);
-                console.log(descriptions);
+                var text = new PointText(rect.center);
+                text.justification = 'center';
+                text.fillColor = 'black';
+                text.content = 'politics asdf lorem ipsum \ntext long long on glong';
+                descTexts.push(text);
             }
             circleCorner.onMouseLeave = function(event) {
                 var popped = descriptions.pop();
                 popped.remove();
-                console.log(descriptions);
+                var poppedText = descTexts.pop();
+                poppedText.remove();
             }
-            console.log(circleCorner);
             nodes.push(circleCorner);
         }
     </script>
