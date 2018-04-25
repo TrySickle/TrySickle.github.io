@@ -114,7 +114,7 @@
 
         for (var i = 0; i < labels.length; i++) {
             var text = new PointText(labelCorners[i]);
-            text.justification = 'center';
+            text.justification = i == 0 || i == 5 ? 'left' : 'right';
             text.fillColor = 'white';
             text.fontSize = '1.5em';
             text.content = labels[i];
