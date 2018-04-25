@@ -39,6 +39,19 @@
                       "Data",
                       "Open Media"];
 
+        var colors = ['#ff303a',
+                      '#ff303a',
+                      '#fc9a11',
+                      '#fc9a11',
+                      '#41f497',
+                      '#41f497',
+                      '#41aff4',
+                      '#41aff4',
+                      '#f8ff30',
+                      '#f8ff30',
+                      '#ff30f1',
+                      '#ff30f1'];
+
         // Params
         var x = view.size.width / 2;
         var y = view.size.height / 2.2;
@@ -89,6 +102,9 @@
             poppedText.remove();
         }
         for (var i = 0; i < corners.length; i++) {
+            var stroke = new Path.Rectangle(new Rectangle(corners[i] - descLength / 2 , new Size(descLength, descLength)));
+            stroke.strokeColor = colors[i];
+            stroke.strokeWidth = 5;
             var corner = new Raster(images[i]);
             corner.position = corners[i];
             corner.rescale(descLength, descLength);
@@ -115,9 +131,10 @@
         for (var i = 0; i < labels.length; i++) {
             var text = new PointText(labelCorners[i]);
             text.justification = i == 0 || i == 5 ? 'left' : 'right';
-            text.fillColor = 'white';
+            text.fillColor = colors[i * 2];
             text.fontSize = '1.5em';
             text.content = labels[i];
+            text.fontFamily = 'Arial';
             console.log(labels[i]);
             console.log(labelCorners[i]);
         }
