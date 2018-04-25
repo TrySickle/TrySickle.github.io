@@ -81,29 +81,29 @@
 
         function getImg(angle) {
             switch(angle) {
-                case corners[0].angle:
+                case (corners[0].x + corners[0].y):
                     return 'img1';
-                case corners[1].angle:
+                case (corners[1].x + corners[1].y):
                     return 'img2';
-                case corners[2].angle:
+                case (corners[2].x + corners[2].y):
                     return 'img3';
-                case corners[3].angle:
+                case (corners[3].x + corners[3].y):
                     return 'img4';
-                case corners[4].angle:
+                case (corners[4].x + corners[4].y):
                     return 'img5';
-                case corners[5].angle:
+                case (corners[5].x + corners[5].y):
                     return 'img6';
-                case corners[6].angle:
+                case (corners[6].x + corners[6].y):
                     return 'img7';
-                case corners[7].angle:
+                case (corners[7].x + corners[7].y):
                     return 'img8';
-                case corners[8].angle:
+                case (corners[8].x + corners[8].y):
                     return 'img9';
-                case corners[9].angle:
+                case (corners[9].x + corners[9].y):
                     return 'img10';
-                case corners[10].angle:
+                case (corners[10].x + corners[10].y):
                     return 'img11';
-                case corners[11].angle:
+                case (corners[11].x + corners[11].y):
                     return 'img12';
             }
         }
@@ -141,6 +141,7 @@
             corner.rescale(descLength, descLength);
             corner.onMouseEnter = function(event) {
                 var rect = new Rectangle(new Point(event.target.position.x + descLength / 2, event.target.position.y - descLength / 2), new Size(descLength * 2, descLength * 2));
+                console.log(event);
                 console.log(event.target.position);
                 var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = 'red';
@@ -150,7 +151,7 @@
                 text.fillColor = 'black';
                 text.content = 'politics asdf lorem ipsum \ntext long long on glong';
                 descTexts.push(text);
-                var img = new Raster(getImg(event.target.position.angle));
+                var img = new Raster(event.target.image);
                 img.position = rect.center;
                 img.rescale(descLength * 2, descLength * 2);
                 descImages.push(img);
