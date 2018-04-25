@@ -16,6 +16,7 @@
         var lines = []; // the Path.Lines to make connections
         var descriptions = []; // the popup full descriptions
         var descTexts = []; // the PointTexts within each description
+        var descImages = []; // the Rasters within each description
 
         // Data Arrays
         // Comics: Polar Bear, Backyard; Films: Man, Brock; Lit: Marx, Grapes; Digital Media: Species, Spore; Data: Cuba, Iraq; Open: Dutty, Boxes
@@ -78,6 +79,35 @@
                             new Point(x + Math.cos(Math.PI * 255 / 180) * radius * labelDist, y - Math.sin(Math.PI * 255 / 180) * radius * labelDist),
                             new Point(x + Math.cos(Math.PI * 315 / 180) * radius * labelDist, y - Math.sin(Math.PI * 315 / 180) * radius * labelDist)];
 
+        function getImg(angle) {
+            switch(angle) {
+                case corners[0].angle:
+                    return 'img1';
+                case corners[1].angle:
+                    return 'img2';
+                case corners[2].angle:
+                    return 'img3';
+                case corners[3].angle:
+                    return 'img4';
+                case corners[4].angle:
+                    return 'img5';
+                case corners[5].angle:
+                    return 'img6';
+                case corners[6].angle:
+                    return 'img7';
+                case corners[7].angle:
+                    return 'img8';
+                case corners[8].angle:
+                    return 'img9';
+                case corners[9].angle:
+                    return 'img10';
+                case corners[10].angle:
+                    return 'img11';
+                case corners[11].angle:
+                    return 'img12';
+            }
+        }
+        
         Raster.prototype.rescale = function(width, height) {
             this.scale(width / this.width, height / this.height);
         };
@@ -102,6 +132,7 @@
             poppedText.remove();
         }
         for (var i = 0; i < corners.length; i++) {
+            console.log(corners[i]);
             var stroke = new Path.Rectangle(new Rectangle(corners[i] - descLength / 2 , new Size(descLength, descLength)));
             stroke.strokeColor = colors[i];
             stroke.strokeWidth = 5;
@@ -109,7 +140,8 @@
             corner.position = corners[i];
             corner.rescale(descLength, descLength);
             corner.onMouseEnter = function(event) {
-                var rect = new Rectangle(new Point(event.target.position.x + descLength / 2, event.target.position.y - descLength / 2), new Size(radius, radius));
+                var rect = new Rectangle(new Point(event.target.position.x + descLength / 2, event.target.position.y - descLength / 2), new Size(descLength * 2, descLength * 2));
+                console.log(event.target.position);
                 var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = 'red';
                 descriptions.push(fullDescription);
@@ -118,12 +150,18 @@
                 text.fillColor = 'black';
                 text.content = 'politics asdf lorem ipsum \ntext long long on glong';
                 descTexts.push(text);
+                var img = new Raster(getImg(event.target.position.angle));
+                img.position = rect.center;
+                img.rescale(descLength * 2, descLength * 2);
+                descImages.push(img);
             }
             corner.onMouseLeave = function(event) {
                 var popped = descriptions.pop();
                 popped.remove();
                 var poppedText = descTexts.pop();
                 poppedText.remove();
+                var poppedImg = descImages.pop();
+                poppedImg.remove();
             }
             nodes.push(corner);
         }
