@@ -53,6 +53,8 @@
                       '#ff30f1',
                       '#ff30f1'];
 
+        var texts = [""];
+
         // Params
         var x = view.size.width / 2;
         var y = view.size.height / 2.2;
@@ -78,35 +80,6 @@
                             new Point(x + Math.cos(Math.PI * 195 / 180) * radius * labelDist, y - Math.sin(Math.PI * 195 / 180) * radius * labelDist),
                             new Point(x + Math.cos(Math.PI * 255 / 180) * radius * labelDist, y - Math.sin(Math.PI * 255 / 180) * radius * labelDist),
                             new Point(x + Math.cos(Math.PI * 315 / 180) * radius * labelDist, y - Math.sin(Math.PI * 315 / 180) * radius * labelDist)];
-
-        function getImg(angle) {
-            switch(angle) {
-                case (corners[0].x + corners[0].y):
-                    return 'img1';
-                case (corners[1].x + corners[1].y):
-                    return 'img2';
-                case (corners[2].x + corners[2].y):
-                    return 'img3';
-                case (corners[3].x + corners[3].y):
-                    return 'img4';
-                case (corners[4].x + corners[4].y):
-                    return 'img5';
-                case (corners[5].x + corners[5].y):
-                    return 'img6';
-                case (corners[6].x + corners[6].y):
-                    return 'img7';
-                case (corners[7].x + corners[7].y):
-                    return 'img8';
-                case (corners[8].x + corners[8].y):
-                    return 'img9';
-                case (corners[9].x + corners[9].y):
-                    return 'img10';
-                case (corners[10].x + corners[10].y):
-                    return 'img11';
-                case (corners[11].x + corners[11].y):
-                    return 'img12';
-            }
-        }
         
         Raster.prototype.rescale = function(width, height) {
             this.scale(width / this.width, height / this.height);
@@ -132,17 +105,14 @@
             poppedText.remove();
         }
         for (var i = 0; i < corners.length; i++) {
-            console.log(corners[i]);
             var stroke = new Path.Rectangle(new Rectangle(corners[i] - descLength / 2 , new Size(descLength, descLength)));
             stroke.strokeColor = colors[i];
-            stroke.strokeWidth = 5;
+            stroke.strokeWidth = colors[i] == '#41aff4' ? 7 : 5;
             var corner = new Raster(images[i]);
             corner.position = corners[i];
             corner.rescale(descLength, descLength);
             corner.onMouseEnter = function(event) {
                 var rect = new Rectangle(new Point(event.target.position.x + descLength / 2, event.target.position.y - descLength / 2), new Size(descLength * 2, descLength * 2));
-                console.log(event);
-                console.log(event.target.position);
                 var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = 'red';
                 descriptions.push(fullDescription);
@@ -174,8 +144,6 @@
             text.fontSize = '1.5em';
             text.content = labels[i];
             text.fontFamily = 'Arial';
-            console.log(labels[i]);
-            console.log(labelCorners[i]);
         }
     </script>
 </head>
