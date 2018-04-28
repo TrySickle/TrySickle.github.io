@@ -85,7 +85,7 @@
         var y = view.size.height / 2.2;
         var radius = view.size.height > view.size.width ? view.size.width / 3 : view.size.height / 3;
         var nodeLength = radius / 3;
-        var descLength = 4 * nodeLength;
+        var descLength = 4.8 * nodeLength;
         var labelDist = 1.34;
         var corners = [new Point(x + radius, y),
                        new Point(x + Math.cos(Math.PI / 6) * radius, y - Math.sin(Math.PI / 6) * radius),
@@ -171,7 +171,7 @@
                 meta.content = metadata[getIndex(event)];
                 meta.fontSize = '.8em';
                 descMeta.push(meta);
-                var text = new PointText(new Point(rect.center.x - 0.9 * descLength / 2, rect.center.y + .1 * descLength));
+                var text = new PointText(new Point(rect.center.x - 0.95 * descLength / 2, rect.center.y + .1 * descLength));
                 text.justification = 'left';
                 text.fillColor = 'white';
                 text.content = addLineBreaks(texts[getIndex(event)]);
