@@ -54,6 +54,7 @@
                       '#ff30f1'];
 
         var texts = [""];
+        var metadata = ["Greatest Threat to Bernie\nArtist: Chip Bok\nDate: 11/19/2015\nPublished: Chip Bok's\nEditorial Comics"];
 
         // Params
         var x = view.size.width / 2;
@@ -122,10 +123,11 @@
                 var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = 'red';
                 descriptions.push(fullDescription);
-                var text = new PointText(rect.center);
-                text.justification = 'center';
+                var text = new PointText(new Point(rect.center.x, rect.center.y - .25 * descLength));
+                text.justification = 'left';
                 text.fillColor = 'black';
-                text.content = 'politics asdf lorem ipsum \ntext long long on glong';
+                text.content = metadata[0];
+                text.fontSize = '.8em';
                 descTexts.push(text);
                 var img = new Raster(event.target.image);
                 var imgLength = descLength / 2;
@@ -151,6 +153,15 @@
             text.fontSize = '1.5em';
             text.content = labels[i];
             text.fontFamily = 'Arial';
+        }
+
+        function getIndex(point) {
+            for (var i = 0; i < corners.length; i++) {
+                if (corners[i].x === point.x && corners[i].y === point.y) {
+                    return i;
+                }
+            }
+            return null;
         }
     </script>
 </head>
