@@ -70,13 +70,13 @@
                         "Arguments Against\nArtist: Joe Heller\nDate: 3/18/2011\nPublished: Green Bay\nPress Gazette",
                         "MAN\nDirector/Creator: Steve Cutts\nReleased: 12/21/2012\nMusic: In the Hall of the \nMountain King",
                         "Erin Brockovich\nDirector: Steven Soderbergh\nWriter: Susannah Grant\nStarring: Julia Roberts,\nAlbert Finney\nReleased: 3/17/2000\nCountry: US",
-                        "The Machine in the Garden\nAuthor: Leo Marx\nPublisher: Oxford University Press\nPublished: 1964\nCountry: US\nGenre: Non-fiction\n",
+                        "The Machine in the Garden\nAuthor: Leo Marx\nPublisher: Oxford University\nPress\nPublished: 1964\nCountry: US\nGenre: Non-fiction\n",
                         "The Grapes of Wrath\nAuthor: John Steinbeck\nPublisher: The Viking Press\nPublished: 4/14/1939\nCountry: US\nGenre: Novel",
                         "Species in Pieces\nCreator: Bryan James\nReleased: 2015\nFormat: CSS",
                         "Spore 1.1\nCreator: SWAMP-Matt Kenyon\nReleased: 2007\nMaterials: Plant, Microcontroller",
                         "U2 Spy Plane Photography\nPhotographer: US Air Force\nDate: 1962\nCountry: Cuba",
                         "Iraq WMD Slideshow\nPresented By: Colin Powell\nDate: 2/5/2003\nCountry: Iraq",
-                        "Nuh Dutty Up Jamaica PSA\nCreator: Jamaica Environment Trust\nReleased: 2/23/2015\nGenre: Pop, Reggae\nCountry: Jamaica",
+                        "Nuh Dutty Up Jamaica PSA\nCreator: Jamaica Environment\nTrust\nReleased: 2/23/2015\nGenre: Pop, Reggae\nCountry: Jamaica",
                         "Little Boxes\nComposer: Malvina Reynolds\nReleased: 1962\nGenre: Political Satire, Folk\nCountry: US"];
 
         // Params
@@ -164,7 +164,7 @@
                 var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = '#717171';
                 descriptions.push(fullDescription);
-                var meta = new PointText(new Point(rect.center.x, rect.center.y - .25 * descLength));
+                var meta = new PointText(new Point(rect.center.x + .05 * descLength, rect.center.y - .4 * descLength));
                 meta.justification = 'left';
                 meta.fillColor = 'white';
                 meta.content = metadata[getIndex(event)];
