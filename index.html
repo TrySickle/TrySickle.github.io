@@ -13,7 +13,7 @@
     <script type="text/paperscript" canvas="myCanvas">
         // Path Arrays
         var nodes = []; // the Path.Rectangles made from the corners and offset to be centered
-        var lines = []; // the Path.Lines to make connections
+        var lines = []; // the Path.Lines
         var descriptions = []; // the popup full descriptions
         var descMeta = []; // the metadata within each description
         var descTexts = []; // the texts within each description
@@ -106,28 +106,46 @@
                             new Point(x + Math.cos(Math.PI * 255 / 180) * radius * labelDist, y - Math.sin(Math.PI * 255 / 180) * radius * labelDist),
                             new Point(x + Math.cos(Math.PI * 315 / 180) * radius * labelDist, y - Math.sin(Math.PI * 315 / 180) * radius * labelDist)];
         
+        var lineCorners = [[corners[0], corners[5]], 
+                           [corners[1], corners[8]]
+                           
+                        ];
+
         Raster.prototype.rescale = function(width, height) {
             this.scale(width / this.width, height / this.height);
         };
-        var line = Path.Line(corners[0], corners[1]);
-        line.strokeColor = 'white';
-        line.strokeWidth = 7;
-        line.onMouseEnter = function(event) {
-            var rect = new Rectangle(new Point(event.target.position.x + descLength, event.target.position.y - descLength), new Size(radius, radius));
-            var fullDescription = new Path.Rectangle(rect);
-            fullDescription.fillColor = '#717171';
-            descriptions.push(fullDescription);
-            var text = new PointText(rect.center);
-            text.justification = 'center';
-            text.fillColor = 'white';
-            text.content = 'politics asdf lorem ipsum \ntext long long on glong';
-            descTexts.push(text);
-        }
-        line.onMouseLeave = function(event) {
-            var popped = descriptions.pop();
-            popped.remove();
-            var poppedText = descTexts.pop();
-            poppedText.remove();
+        for (var i = 0; i < lineCorners.length; i++) {
+            var line = Path.Line(lineCorners[i][0], lineCorners[i][1]);
+            line.strokeColor = 'white';
+            line.strokeWidth = 7;
+            line.onMouseEnter = function(event) {
+                var rect = new Rectangle(new Point(event.target.position.x, event.target.position.y), new Size(radius, radius));
+                var fullDescription = new Path.Rectangle(rect);
+                fullDescription.fillColor = '#717171';
+                descriptions.push(fullDescription);
+                var text = new PointText(rect.center);
+                text.justification = 'center';
+                text.fillColor = 'white';
+                text.content = 'politics asdf lorem ipsum \ntext long long on glong';
+                descTexts.push(text);
+                for (var j = 0; j < lines.length; j++) {
+                    if (event.target.id === lines[j].id) {
+                        lines[j].strokeColor = 'yellow';
+                    }
+                }
+            }
+            line.onMouseLeave = function(event) {
+                var popped = descriptions.pop();
+                popped.remove();
+                var poppedText = descTexts.pop();
+                poppedText.remove();
+                for (var j = 0; j < lines.length; j++) {
+                    if (event.target.id === lines[j].id) {
+                        lines[j].strokeColor = 'white';
+                    }
+                }
+            }
+            lines.push(line);
         }
         for (var i = 0; i < corners.length; i++) {
             var stroke = new Path.Rectangle(new Rectangle(corners[i] - nodeLength / 2 , new Size(nodeLength, nodeLength)));
@@ -202,7 +220,6 @@
             }
             var broken = "";
             var words = text.split(" ");
-            console.log(words);
             var lineLength = 0;
             var lineLimit = 55;
             for (var i = 0; i < words.length; i++) {
