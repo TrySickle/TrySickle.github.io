@@ -55,6 +55,16 @@
                       '#ff30f1',
                       '#ff30f1'];
 
+        var lineTexts = [[0, "line1"],
+                         [0, "line2"],
+                         [0, ""],
+                         [0, ""],
+                         [0, ""],
+                         [0, ""],
+                         [0, ""],
+                         [0, ""],
+                         [0, ""]];
+
         var texts = ["Chip Bok’s political comic plays off of Bernie Sander’s argument in a debate that climate change is directly related to the growth of terrorism, e.g. that climate change will cause water shortages, drought, and mass migration, creating a disgruntled, instable populace that will be easily swayed by radical groups. Bok criticizes the over-generalization of Sander’s argument and mocks his claim by using personification of nature and the popular image of polar bears losing their habitat due to climate change. Nature is thus used as a humorous counterpoint in a political argument.",
                      "This comic deals with the topic of energy and the common counter arguments to each strategy. Joe Heller juxtaposes the dangerous and life-threatening accidents from nuclear, oil, and coal with the mere nuisance of wind energy. Interestingly, nuclear energy is portrayed in the same light as oil and coal despite its usual categorization under renewable energy. The main criticism of the comic comes down to the people who desire their local environment to be free from visual annoyances like a wind turbine. Heller seems to be supporting wind energy as an alternative to other riskier technologies.",
                      "",
@@ -67,6 +77,7 @@
                      "",
                      "",
                      ""];
+
         var metadata = ["Greatest Threat to Bernie\nArtist: Chip Bok\nDate: 11/19/2015\nPublished: Chip Bok's\nEditorial Comics",
                         "Arguments Against\nArtist: Joe Heller\nDate: 3/18/2011\nPublished: Green Bay\nPress Gazette",
                         "MAN\nDirector/Creator: Steve Cutts\nReleased: 12/21/2012\nMusic: In the Hall of the \nMountain King",
@@ -119,6 +130,8 @@
             var line = Path.Line(lineCorners[i][0], lineCorners[i][1]);
             line.strokeColor = 'white';
             line.strokeWidth = 7;
+            lines.push(line);
+            lineTexts[i][0] = line.id;
             line.onMouseEnter = function(event) {
                 var rect = new Rectangle(new Point(event.target.position.x, event.target.position.y), new Size(radius, radius));
                 var fullDescription = new Path.Rectangle(rect);
@@ -127,9 +140,10 @@
                 var text = new PointText(rect.center);
                 text.justification = 'center';
                 text.fillColor = 'white';
-                text.content = 'politics asdf lorem ipsum \ntext long long on glong';
+                text.content = getLineText(event.target.id);
                 descTexts.push(text);
                 for (var j = 0; j < lines.length; j++) {
+                    console.log(lines[j].id);
                     if (event.target.id === lines[j].id) {
                         lines[j].strokeColor = 'yellow';
                     }
@@ -146,7 +160,6 @@
                     }
                 }
             }
-            lines.push(line);
         }
         for (var i = 0; i < corners.length; i++) {
             var stroke = new Path.Rectangle(new Rectangle(corners[i] - nodeLength / 2 , new Size(nodeLength, nodeLength)));
@@ -213,6 +226,15 @@
                 }
             }
             return null;
+        }
+
+        function getLineText(id) {
+            for (var i = 0; i < lineTexts.length; i++) {
+                if (lineTexts[i][0] === id) {
+                    return lineTexts[i][1];
+                }
+            }
+            return "";
         }
 
         function addLineBreaks(text) {
