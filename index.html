@@ -74,18 +74,18 @@
                         "The Machine in the Garden\nAuthor: Leo Marx\nPublisher: Oxford University\nPress\nPublished: 1964\nCountry: US\nGenre: Non-fiction\n",
                         "The Grapes of Wrath\nAuthor: John Steinbeck\nPublisher: The Viking Press\nPublished: 4/14/1939\nCountry: US\nGenre: Novel",
                         "Species in Pieces\nCreator: Bryan James\nReleased: 2015\nFormat: CSS",
-                        "Spore 1.1\nCreator: SWAMP-Matt Kenyon\nReleased: 2007\nMaterials: Plant, Microcontroller",
+                        "Spore 1.1\nCreator: SWAMP,\nMatt Kenyon\nReleased: 2007\nMaterials: Plant,\nMicrocontroller",
                         "U2 Spy Plane Photography\nPhotographer: US Air Force\nDate: 1962\nCountry: Cuba",
                         "Iraq WMD Slideshow\nPresented By: Colin Powell\nDate: 2/5/2003\nCountry: Iraq",
-                        "Nuh Dutty Up Jamaica PSA\nCreator: Jamaica Environment\nTrust\nReleased: 2/23/2015\nGenre: Pop, Reggae\nCountry: Jamaica",
-                        "Little Boxes\nComposer: Malvina Reynolds\nReleased: 1962\nGenre: Political Satire, Folk\nCountry: US"];
+                        "Nuh Dutty Up Jamaica PSA\nCreator: Jamaica\nEnvironment Trust\nReleased: 2/23/2015\nGenre: Pop, Reggae\nCountry: Jamaica",
+                        "Little Boxes\nComposer: Malvina\nReynolds\nReleased: 1962\nGenre: Political Satire, Folk\nCountry: US"];
 
         // Params
         var x = view.size.width / 2;
         var y = view.size.height / 2.2;
         var radius = view.size.height > view.size.width ? view.size.width / 3 : view.size.height / 3;
         var nodeLength = radius / 3;
-        var descLength = 4.8 * nodeLength;
+        var descLength = 4.5 * nodeLength;
         var labelDist = 1.34;
         var corners = [new Point(x + radius, y),
                        new Point(x + Math.cos(Math.PI / 6) * radius, y - Math.sin(Math.PI / 6) * radius),
@@ -158,9 +158,9 @@
             corner.onMouseEnter = function(event) {
                 var rect;
                 if (event.target.position.y > y) {
-                    rect = new Rectangle(new Point(event.target.position.x + 0.5 * nodeLength, event.target.position.y - 4.5 * nodeLength), new Size(descLength, descLength));
+                    rect = new Rectangle(new Point(event.target.position.x + 0.5 * nodeLength, event.target.position.y - 4.5 * nodeLength), new Size(descLength, descLength * 1.1));
                 } else {
-                    rect = new Rectangle(new Point(event.target.position.x + 0.5 * nodeLength, event.target.position.y - nodeLength), new Size(descLength, descLength));
+                    rect = new Rectangle(new Point(event.target.position.x + 0.5 * nodeLength, event.target.position.y - nodeLength), new Size(descLength, descLength * 1.1));
                 }
                 var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = '#717171';
@@ -179,7 +179,7 @@
                 descTexts.push(text);
                 var img = new Raster(event.target.image);
                 var imgLength = descLength / 2;
-                img.position = new Point(rect.center.x - 1/4 * descLength, rect.center.y - 1/4 * descLength);
+                img.position = new Point(rect.center.x - 1/4 * descLength, rect.center.y - 1/4 * descLength * 1.2);
                 img.rescale(imgLength, imgLength);
                 descImages.push(img);
             }
@@ -222,7 +222,7 @@
             var broken = "";
             var words = text.split(" ");
             var lineLength = 0;
-            var lineLimit = 55;
+            var lineLimit = 50;
             for (var i = 0; i < words.length; i++) {
                 if (lineLength + words[i].length > lineLimit) {
                     broken += "\n";
