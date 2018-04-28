@@ -15,7 +15,8 @@
         var nodes = []; // the Path.Rectangles made from the corners and offset to be centered
         var lines = []; // the Path.Lines to make connections
         var descriptions = []; // the popup full descriptions
-        var descTexts = []; // the PointTexts within each description
+        var descMeta = []; // the metadata within each description
+        var descTexts = []; // the texts within each description
         var descImages = []; // the Rasters within each description
 
         // Data Arrays
@@ -53,7 +54,7 @@
                       '#ff30f1',
                       '#ff30f1'];
 
-        var texts = [""];
+        var texts = ["Chip Bok’s political comic plays off of Bernie Sander’s argument in a debate that climate change is directly related to the growth of terrorism, e.g. that climate change will cause water shortages, drought, and mass migration, creating a disgruntled, instable populace that will be easily swayed by radical groups. Bok criticizes the over-generalization of Sander’s argument and mocks his claim by using personification of nature and the popular image of polar bears losing their habitat due to climate change. Nature is thus used as a humorous counterpoint in a political argument."];
         var metadata = ["Greatest Threat to Bernie\nArtist: Chip Bok\nDate: 11/19/2015\nPublished: Chip Bok's\nEditorial Comics"];
 
         // Params
@@ -61,7 +62,7 @@
         var y = view.size.height / 2.2;
         var radius = view.size.height > view.size.width ? view.size.width / 3 : view.size.height / 3;
         var nodeLength = radius / 3;
-        var descLength = 4 * nodeLength;
+        var descLength = 5 * nodeLength;
         var labelDist = 1.34;
         var corners = [new Point(x + radius, y),
                        new Point(x + Math.cos(Math.PI / 6) * radius, y - Math.sin(Math.PI / 6) * radius),
@@ -123,10 +124,16 @@
                 var fullDescription = new Path.Rectangle(rect);
                 fullDescription.fillColor = 'red';
                 descriptions.push(fullDescription);
-                var text = new PointText(new Point(rect.center.x, rect.center.y - .25 * descLength));
+                var meta = new PointText(new Point(rect.center.x, rect.center.y - .25 * descLength));
+                meta.justification = 'left';
+                meta.fillColor = 'black';
+                meta.content = metadata[0];
+                meta.fontSize = '.8em';
+                descMeta.push(meta);
+                var text = new PointText(new Point(rect.center.x - descLength / 2, rect.center.y + .1 * descLength));
                 text.justification = 'left';
                 text.fillColor = 'black';
-                text.content = metadata[0];
+                text.content = addLineBreaks(texts[0]);
                 text.fontSize = '.8em';
                 descTexts.push(text);
                 var img = new Raster(event.target.image);
@@ -138,6 +145,8 @@
             corner.onMouseLeave = function(event) {
                 var popped = descriptions.pop();
                 popped.remove();
+                var poppedMeta = descMeta.pop();
+                poppedMeta.remove();
                 var poppedText = descTexts.pop();
                 poppedText.remove();
                 var poppedImg = descImages.pop();
@@ -162,6 +171,23 @@
                 }
             }
             return null;
+        }
+
+        function addLineBreaks(text) {
+            var broken = "";
+            var words = text.split(" ");
+            console.log(words);
+            var lineLength = 0;
+            var lineLimit = 55;
+            for (var i = 0; i < words.length; i++) {
+                if (lineLength + words[i].length > lineLimit) {
+                    broken += "\n";
+                    lineLength = 0;
+                }
+                broken += words[i] + " ";
+                lineLength += words[i].length;
+            }
+            return broken;
         }
     </script>
 </head>
