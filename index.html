@@ -54,8 +54,30 @@
                       '#ff30f1',
                       '#ff30f1'];
 
-        var texts = ["Chip Bok’s political comic plays off of Bernie Sander’s argument in a debate that climate change is directly related to the growth of terrorism, e.g. that climate change will cause water shortages, drought, and mass migration, creating a disgruntled, instable populace that will be easily swayed by radical groups. Bok criticizes the over-generalization of Sander’s argument and mocks his claim by using personification of nature and the popular image of polar bears losing their habitat due to climate change. Nature is thus used as a humorous counterpoint in a political argument."];
-        var metadata = ["Greatest Threat to Bernie\nArtist: Chip Bok\nDate: 11/19/2015\nPublished: Chip Bok's\nEditorial Comics"];
+        var texts = ["Chip Bok’s political comic plays off of Bernie Sander’s argument in a debate that climate change is directly related to the growth of terrorism, e.g. that climate change will cause water shortages, drought, and mass migration, creating a disgruntled, instable populace that will be easily swayed by radical groups. Bok criticizes the over-generalization of Sander’s argument and mocks his claim by using personification of nature and the popular image of polar bears losing their habitat due to climate change. Nature is thus used as a humorous counterpoint in a political argument.",
+                     "",
+                     "",
+                     "",
+                     "",
+                     "",
+                     "",
+                     "",
+                     "",
+                     "",
+                     "",
+                     ""];
+        var metadata = ["Greatest Threat to Bernie\nArtist: Chip Bok\nDate: 11/19/2015\nPublished: Chip Bok's\nEditorial Comics",
+                        "Arguments Against\nArtist: Joe Heller\nDate: 3/18/2011\nPublished: Green Bay\nPress Gazette",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""];
 
         // Params
         var x = view.size.width / 2;
@@ -127,13 +149,13 @@
                 var meta = new PointText(new Point(rect.center.x, rect.center.y - .25 * descLength));
                 meta.justification = 'left';
                 meta.fillColor = 'white';
-                meta.content = metadata[0];
+                meta.content = metadata[getIndex(event)];
                 meta.fontSize = '.8em';
                 descMeta.push(meta);
                 var text = new PointText(new Point(rect.center.x - descLength / 2, rect.center.y + .1 * descLength));
                 text.justification = 'left';
                 text.fillColor = 'white';
-                text.content = addLineBreaks(texts[0]);
+                text.content = addLineBreaks(texts[getIndex(event)]);
                 text.fontSize = '.8em';
                 descTexts.push(text);
                 var img = new Raster(event.target.image);
@@ -164,9 +186,10 @@
             text.fontFamily = 'Arial';
         }
 
-        function getIndex(point) {
-            for (var i = 0; i < corners.length; i++) {
-                if (corners[i].x === point.x && corners[i].y === point.y) {
+        function getIndex(event) {
+            var id = event.target.image.id;
+            for (var i = 0; i < images.length; i++) {
+                if (id === images[i]) {
                     return i;
                 }
             }
@@ -174,6 +197,9 @@
         }
 
         function addLineBreaks(text) {
+            if (text == null) {
+                return "";
+            }
             var broken = "";
             var words = text.split(" ");
             console.log(words);
