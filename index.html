@@ -93,11 +93,11 @@
         line.onMouseEnter = function(event) {
             var rect = new Rectangle(new Point(event.target.position.x + descLength, event.target.position.y - descLength), new Size(radius, radius));
             var fullDescription = new Path.Rectangle(rect);
-            fullDescription.fillColor = 'red';
+            fullDescription.fillColor = '#717171';
             descriptions.push(fullDescription);
             var text = new PointText(rect.center);
             text.justification = 'center';
-            text.fillColor = 'black';
+            text.fillColor = 'white';
             text.content = 'politics asdf lorem ipsum \ntext long long on glong';
             descTexts.push(text);
         }
@@ -122,17 +122,17 @@
                     rect = new Rectangle(new Point(event.target.position.x + 0.5 * nodeLength, event.target.position.y - nodeLength), new Size(descLength, descLength));
                 }
                 var fullDescription = new Path.Rectangle(rect);
-                fullDescription.fillColor = 'red';
+                fullDescription.fillColor = '#717171';
                 descriptions.push(fullDescription);
                 var meta = new PointText(new Point(rect.center.x, rect.center.y - .25 * descLength));
                 meta.justification = 'left';
-                meta.fillColor = 'black';
+                meta.fillColor = 'white';
                 meta.content = metadata[0];
                 meta.fontSize = '.8em';
                 descMeta.push(meta);
                 var text = new PointText(new Point(rect.center.x - descLength / 2, rect.center.y + .1 * descLength));
                 text.justification = 'left';
-                text.fillColor = 'black';
+                text.fillColor = 'white';
                 text.content = addLineBreaks(texts[0]);
                 text.fontSize = '.8em';
                 descTexts.push(text);
