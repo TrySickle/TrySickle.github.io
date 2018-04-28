@@ -58,7 +58,7 @@
         var texts = ["Chip Bok’s political comic plays off of Bernie Sander’s argument in a debate that climate change is directly related to the growth of terrorism, e.g. that climate change will cause water shortages, drought, and mass migration, creating a disgruntled, instable populace that will be easily swayed by radical groups. Bok criticizes the over-generalization of Sander’s argument and mocks his claim by using personification of nature and the popular image of polar bears losing their habitat due to climate change. Nature is thus used as a humorous counterpoint in a political argument.",
                      "This comic deals with the topic of energy and the common counter arguments to each strategy. Joe Heller juxtaposes the dangerous and life-threatening accidents from nuclear, oil, and coal with the mere nuisance of wind energy. Interestingly, nuclear energy is portrayed in the same light as oil and coal despite its usual categorization under renewable energy. The main criticism of the comic comes down to the people who desire their local environment to be free from visual annoyances like a wind turbine. Heller seems to be supporting wind energy as an alternative to other riskier technologies.",
                      "",
-                     "",
+                     "Erin Brockovich is a dramatized, biographical film centering around the lawsuit of Anderson, et al. v. Pacific Gas and Electric for using chromium-6 for compressor cooling and storing the contaminated water in unlined ponds allowing it to spread into the groundwater. The chromium-6 was linked to a cluster of cancer cases in Hinkley and resulted in the largest direct-action lawsuit settlement in US history. The movie deals with the politics surrounding the cover up of the pollution and the working of large corporations which seem to be above the law.",
                      "",
                      "",
                      "",
@@ -171,7 +171,7 @@
                 meta.content = metadata[getIndex(event)];
                 meta.fontSize = '.8em';
                 descMeta.push(meta);
-                var text = new PointText(new Point(rect.center.x - descLength / 2, rect.center.y + .1 * descLength));
+                var text = new PointText(new Point(rect.center.x - 0.9 * descLength / 2, rect.center.y + .1 * descLength));
                 text.justification = 'left';
                 text.fillColor = 'white';
                 text.content = addLineBreaks(texts[getIndex(event)]);
